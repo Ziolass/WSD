@@ -2,4 +2,4 @@
 Oficjalna witryna projektu WSD 18Z zespołu H. 
 ### Dokumentacja
 Aktualny stan projektu:  
-- [Część A] (https://github.com/Ziolass/WSD/edit/master/docs/dokumentacja.pdf)
+- [Część A] (docs/dokumentacja.pdf)
