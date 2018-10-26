@@ -4,4 +4,4 @@ Oficjalna witryna projektu WSD 18Z zespołu H.
 Aktualny stan projektu:  
 - [Część A](docs/dokumentacja.pdf)
 ## Architektura
-![arch](pics/architektura.jpb)
+![arch](pics/architektura.jpg)
