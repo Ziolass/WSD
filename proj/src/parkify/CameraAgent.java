@@ -7,13 +7,14 @@ import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 import java.util.Random;
 
 public class CameraAgent extends Agent {
 
     // Agent stacji powiazany z tym agentem kamery
-    private final String msgReciver = "firstStationAgent@192.168.0.14:1099/JADE";
+    private final String msgReciver = "firstStationAgent@192.168.1.23:1099/JADE";
 
     @Override
     protected void setup() {
@@ -39,6 +40,7 @@ public class CameraAgent extends Agent {
                     int random_integer = rand.nextInt(99999 - 10000) + 10000;
 
                     ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+                    msg.setConversationId("car-plate-status");
                     msg.setContent("car" + random_integer);
                     msg.addReceiver(new AID(msgReciver, AID.ISGUID));
                     send(msg);

@@ -15,7 +15,7 @@ import java.util.Random;
 public class ParkingAgent extends Agent {
 
     // Agent stacji powiazany z tym agentem miejsca parkingowego
-    private final String msgReciver = "firstStationAgent@192.168.0.14:1099/JADE";
+    private final String msgReciver = "firstStationAgent@192.168.1.23:1099/JADE";
 
     @Override
     protected void setup() {
@@ -56,6 +56,7 @@ public class ParkingAgent extends Agent {
             Random rand = new Random();
 
             ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+            msg.setConversationId("place-status");
             if(rand.nextFloat() > 0.5) {
                 msg.setContent("true");
 
@@ -81,9 +82,11 @@ public class ParkingAgent extends Agent {
 
         @Override
         public void action() {
-            ACLMessage msg = receive(MessageTemplate.MatchPerformative( ACLMessage.INFORM ));
+            MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("place-reservation"),
+                    MessageTemplate.MatchPerformative( ACLMessage.REQUEST ));
+            ACLMessage msg = receive(mt);
 
-            if(msg != null && msg.getPerformative() == ACLMessage.INFORM) {
+            if(msg != null) {
                 String content = msg.getContent();
 
                 if ((content != null) && content.startsWith("RESERVE")){
